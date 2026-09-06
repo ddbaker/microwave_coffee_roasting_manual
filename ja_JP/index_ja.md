@@ -8,8 +8,8 @@
 
 [Microwave Roasting Principles](./microwave_roasting_principles_ja.md)
 
-[Microwave Roasting Practice 実践 汎化説明](./microwave_roasting_practice_ja.md)
+[Microwave Roasting Practice 実践 一般的な説明](./microwave_roasting_practice_ja.md)
 
 [Microwave Roasting Practice エチオピア ナチュラル精製生豆の焙煎](./microwave_roasting_practice_ethiopia_natural_medium_ja.md)
 
-[Microwave Roasting Practice ベネズエラ ウオッシュド精製生豆の焙煎](./microwave_roasting_practice_venezuela_washed_city_ja.md)
+[Microwave Roasting Practice ベネズエラ ウォッシュド精製生豆の焙煎](./microwave_roasting_practice_venezuela_washed_city_ja.md)
