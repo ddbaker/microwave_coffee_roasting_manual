@@ -29,7 +29,7 @@
 木製割りばしをレンジ底面に置き、その上に
 生豆を入れたホウケイ酸ガラス製シリンダーをセットする。
 
-<img src="./images/place_on_the_disposable_chopsticks.jpg" width="50%">
+<img src="../images/place_on_the_disposable_chopsticks.jpg" width="50%">
 
 ## step-3 焙煎スタート 低ワットで 100℃ まで
 
@@ -252,4 +252,4 @@ step-5 までで 体積増 (転換点) に転じない場合には、
 
 これで焙煎終了である。
 
-<img src="./images/roasting-done-beans.jpg" width="50%">
+<img src="../images/roasting-done-beans.jpg" width="50%">

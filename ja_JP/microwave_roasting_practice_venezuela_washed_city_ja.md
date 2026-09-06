@@ -267,7 +267,7 @@ Washed 精製のコーヒー豆は、Natural 精製の豆と比較して、必�
 | ---- | ---- | 
 | 226.9℃ | 110.0g | 
 
-<img src="./images/venezuela-muccay-dark_roast.png" width="50%">
+<img src="../images/venezuela-muccay-dark_roast.png" width="50%">
 
 ## Stats
 

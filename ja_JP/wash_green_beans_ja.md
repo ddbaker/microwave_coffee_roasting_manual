@@ -45,7 +45,7 @@
 表面についた汚れを落とせればよい。
 浄水を使うのが望ましい。
 
-<img src="./images/quick-wash-start.jpg" width="15%">
+<img src="../images/quick-wash-start.jpg" width="15%">
 
 ### Step-2: 50℃のお湯洗い
 
@@ -53,25 +53,25 @@
 チャフを落とす。
 水に漬けることで明らかになる不良豆を取り除く。
 
-<img src="./images/defected-beans-before-roasting.png" width="15%">
+<img src="../images/defected-beans-before-roasting.png" width="15%">
 
 50℃のお湯で洗い、すすいで、もう一度50℃のお湯で洗う。
 2回洗うとチャフはほぼ取り除くことができる。  
 チャフがほぼ出なくなるまですすぐ。 
 チャフが全く出なくなることはないので適宜切り上げる。
 
-<img src="./images/wash-greenbeans-50cel.jpg" width="15%">
+<img src="../images/wash-greenbeans-50cel.jpg" width="15%">
 
 ### Step-3: 30分 蜂蜜 + 果糖水溶液に漬ける
 
 耐熱ガラスの容器に洗浄が終わった生豆を入れ、
 蜂蜜 15g、果糖 20g を加える。
 
-<img src="./images/honey_fructose.png" width="30%">
+<img src="../images/honey_fructose.png" width="30%">
 
 50℃のお湯を、生豆が完全にかぶり、生豆の高さの2倍程度の水位になるまで注ぐ。
 
-<img src="./images/soaking_30min.jpg" width="30%">
+<img src="../images/soaking_30min.jpg" width="30%">
 
 発育不足の白い豆が浮いてくるので、ある程度取り除く。
 どの程度浮き豆を取り除くかは、その生豆の品質による。
@@ -83,7 +83,7 @@
 
 30分待つ。
 
-<img src="./images/soaking_50cel.jpg" width="30%">
+<img src="../images/soaking_50cel.jpg" width="30%">
 
 
 ### Step-4: リンス
@@ -93,7 +93,7 @@
 
 リンスしたら、焙煎を行う ホウケイ酸ガラス製の容器に生豆を移す。
 
-<img src="./images/green_beans-cylinder.jpg" width="20%">
+<img src="../images/green_beans-cylinder.jpg" width="20%">
 
 ## 浸水後の重量変化
 
@@ -112,15 +112,15 @@
 
 生豆の外面についたチャフは、洗浄、30分浸水でほぼ取り除くことができる。
 
-<img src="./images/chaf.jpg" width="10%">
+<img src="../images/chaf.jpg" width="10%">
 
 焙煎後の後片付けは格段に楽になる。
 
-<img src="./images/chaf2.jpg" width="10%">
+<img src="../images/chaf2.jpg" width="10%">
 
 また、チャフに発火するといった「火の気」の心配を低減できるのもメリットである。
 
-<img src="./images/chaf3.png" width="20%">
+<img src="../images/chaf3.png" width="20%">
 
 ## Appendix-2 蜂蜜と果糖を使用することの意味
 

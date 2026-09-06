@@ -36,7 +36,7 @@
 コーヒー豆の焙煎で発生する制約の1つは1度に焙煎できるコーヒー生豆 (Green Beans) の量である。  
 150g 前後の生豆が適正量である。最大でも 200g 程度にとどめることを推奨する。
 
-<img src="./images/geen_beans-144g.png" width="50%">
+<img src="../images/geen_beans-144g.png" width="50%">
 
 ### 3. ホウケイ酸ガラス製の耐熱容器 (シリンダー)
 
@@ -65,7 +65,7 @@
 ガラス容器もそれに準じた高温になることから、
 取っ手の付いた容器であることが望ましい。  
 
-<img src="./images/glass-cylinder.png" width="50%">
+<img src="../images/glass-cylinder.png" width="50%">
 
 ### 5. 木製の割りばし (竹製の割りばしは使えない)
 
@@ -84,7 +84,7 @@
 乾いた木は誘電損失率が小さくほとんどマイクロ波を吸収しないため
 ガラス容器を載せる台座に使うことができる。
 
-<img src="./images/place_on_the_disposable_chopsticks.jpg" width="50%">
+<img src="../images/place_on_the_disposable_chopsticks.jpg" width="50%">
 
 
 ガラス容器を浮かせる台座はフラットテーブル型の電子レンジでの使用でのみ
@@ -113,4 +113,4 @@
 耐熱グローブを着用していても、容器上部の焙煎中の熱気が出てくる部分に長い時間触れるのは熱すぎるため、  
 容器を振って撹拌する時には厚手のタオルをガラス容器上部に当てて熱を防ぐといった工夫が必要である。
 
-<img src="./images/burn safety.jpg" width="50%">
+<img src="../images/burn safety.jpg" width="50%">

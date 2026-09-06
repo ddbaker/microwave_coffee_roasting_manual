@@ -279,7 +279,7 @@ Ethiopia Sidama であれば、2ハゼ前、No.24 程度で止めると
 | ---- | ---- | 
 | 215.0℃ | 119.2g | 
 
-<img src="./images/ethiopia-shidama.jpg" width="50%">
+<img src="../images/ethiopia-shidama.jpg" width="50%">
 
 ## Stats
 
