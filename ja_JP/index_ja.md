@@ -1,15 +1,10 @@
-# Microwave Coffee Roasting Manual
+# 電子レンジによるコーヒー豆焙煎マニュアル
 
-## Table of Contents
+## 目次
 
-[Items to Prepare](./items_to_prepare_ja.md)
-
-[Wash Green Beans in Hot Water](./wash_green_beans_ja.md)
-
-[Microwave Roasting Principles](./microwave_roasting_principles_ja.md)
-
-[Microwave Roasting Practice 実践 一般的な説明](./microwave_roasting_practice_ja.md)
-
-[Microwave Roasting Practice エチオピア ナチュラル精製生豆の焙煎](./microwave_roasting_practice_ethiopia_natural_medium_ja.md)
-
-[Microwave Roasting Practice ベネズエラ ウォッシュド精製生豆の焙煎](./microwave_roasting_practice_venezuela_washed_city_ja.md)
+1. [準備する器具・材料](./items_to_prepare_ja.md)
+2. [生豆の温水洗浄と吸水処理](./wash_green_beans_ja.md)
+3. [電子レンジ焙煎の基本原則](./microwave_roasting_principles_ja.md)
+4. [焙煎実践：標準プロセス解説](./microwave_roasting_practice_ja.md)
+5. [焙煎実践事例：エチオピア（ナチュラル精製／中浅煎り）](./microwave_roasting_practice_ethiopia_natural_medium_ja.md)
+6. [焙煎実践事例：ベネズエラ（ウォッシュド精製／中深煎り・シティ）](./microwave_roasting_practice_venezuela_washed_city_ja.md)
