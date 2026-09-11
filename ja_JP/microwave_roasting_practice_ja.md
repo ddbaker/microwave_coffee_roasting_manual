@@ -253,3 +253,9 @@ step-5 までで 体積増 (転換点) に転じない場合には、
 これで焙煎終了である。
 
 <img src="../images/roasting-done-beans.jpg" width="50%">
+
+## 体積遷移グラフ
+
+焙煎経過時間を横軸に, 縦軸に体積と照射ワット数をプロットしたグラフを例示する.
+
+<img src="../images/sample_ethiopia_gesha_village_coffee_roast_26Jul25.png" width="75%">
