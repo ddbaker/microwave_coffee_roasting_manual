@@ -19,9 +19,17 @@ Pages Functions は Workers の実行環境で動き、`GET /api/roasts/` と
 - 接続先プロジェクト: `coffee-roasting-microwaves-preview` の Production / Preview 環境
 
 この Pages プロジェクトの Production は、運用上の「確認用固定URL」を意味します。
-本番プロジェクト `coffee-roasting-microwaves` には D1 を追加していません。
-本番公開には別の D1 を用意し、確認したソース一式から復元してから接続してください。
+本番プロジェクト `coffee-roasting-microwaves` は、本番専用 D1 `coffee-roasting-production`
+（ID: `cb45ceaa-6b0c-4180-ba77-a8e95b86ab13`）を Production 環境の `DB` に接続しています。
+確認用とは独立したDBに、同じ正本ZIPから352件を取り込みました。
 本番の自動デプロイは無効のままです。
+
+本番URL: https://coffee-roasting-microwaves.pages.dev/ （日本語: `/ja/`、焙煎ログ: `/roasting/`、`/ja/roasting/`）。
+2026-09-18 の phase-2 公開コミットは `e929267098798867349b0e81d61c394d3c83f57a`。
+デプロイID: `a1bfe3ae-ce4e-46fc-bf57-4b0a08f9c78e`。
+固定版URL: https://a1bfe3ae.coffee-roasting-microwaves.pages.dev/ 。
+承認済み確認用デプロイと全40公開ファイルの一致を確認してから公開しました。
+本番で237件のグラフ、検索、PNG保存、英日切替、390px表示、トップからの遷移を検証済みです。
 
 Pages の接続設定は Cloudflare 側で管理します。DB ID を含むローカル設定は
 Git 管理対象外です。公開ブランチに `wrangler.toml` / `wrangler.jsonc` を追加して
@@ -114,6 +122,19 @@ ZIP内のパス異常、壊れたODS、1ステートメント95 KB以上の非�
 ZIPファイルの作成日時が変わっても内容が同じなら、ODSの重複取込は起きません。
 
 ## 全件再構築と障害復旧
+
+本番データの更新では、`wrangler.preview.jsonc` と同じ形式で `wrangler.production.jsonc` を作り、
+`name` を `coffee-roasting-microwaves`、`database_name` を `coffee-roasting-production`、
+`database_id` を `cb45ceaa-6b0c-4180-ba77-a8e95b86ab13` にします。この設定もGit管理対象外です。
+本番操作を明示するため、確認用のPowerShellヘルパーではなく、次の管理者コマンドを使用します。
+
+```powershell
+python scripts/roasting/import_logs.py --zip 'D:\path\new-snapshot.zip' --apply-remote --config wrangler.production.jsonc --wrangler .data/tools/node_modules/wrangler/bin/wrangler.js
+```
+
+このPCで `python` がPATH上にない場合は、Python実行ファイルのフルパスを使用してください。
+本番の全件再構築は、完全な正本一式を指定した上で `--rebuild` を追加します。
+確認用DBの更新は本番DBへ自動反映されません。
 
 全件再構築では、指定したZIP群だけを有効な集合にします。通常更新と異なり、含まれないファイルは
 公開対象から外れます。完全な正本一式を指定してください。
