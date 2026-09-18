@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://coffee-roasting-microwaves.pages.dev/sitemap.xml

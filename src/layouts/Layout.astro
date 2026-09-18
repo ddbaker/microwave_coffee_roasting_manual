@@ -1,9 +1,11 @@
 ---
 import '../styles/global.css';
 import { home, route } from '../lib/manual.mjs';
+import { absoluteUrl, googleVerification } from '../lib/search.mjs';
 const { lang = 'en', title, description, chapterKey, dashboard = false } = Astro.props;
 const ja = lang === 'ja';
 const languageUrl = target => dashboard ? (target === 'ja' ? '/ja/roasting/' : '/roasting/') : chapterKey ? route(target, chapterKey) : home(target);
+const notFound = /^\/404(?:\.html)?\/?$/.test(Astro.url.pathname);
 ---
 <!doctype html>
 <html lang={lang}>
@@ -12,9 +14,13 @@ const languageUrl = target => dashboard ? (target === 'ja' ? '/ja/roasting/' : '
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f8f7f3" />
-    <link rel="alternate" hreflang="en" href={languageUrl('en')} />
-    <link rel="alternate" hreflang="ja" href={languageUrl('ja')} />
-    <link rel="alternate" hreflang="x-default" href={languageUrl('en')} />
+    <meta name="google-site-verification" content={googleVerification} />
+    {notFound ? <meta name="robots" content="noindex" /> : <>
+      <link rel="canonical" href={absoluteUrl(Astro.url.pathname)} />
+      <link rel="alternate" hreflang="en" href={absoluteUrl(languageUrl('en'))} />
+      <link rel="alternate" hreflang="ja" href={absoluteUrl(languageUrl('ja'))} />
+      <link rel="alternate" hreflang="x-default" href={absoluteUrl(languageUrl('en'))} />
+    </>}
     <title>{title} · {ja ? '電子レンジ焙煎マニュアル' : 'Coffee Roasting with Microwaves — A Practical Manual'}</title>
   </head>
   <body>

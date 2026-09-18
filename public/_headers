@@ -1,0 +1,8 @@
+# Keep the separate review project out of search results.
+# Do not add a wildcard rule for the production *.pages.dev root hostname.
+https://coffee-roasting-microwaves-preview.pages.dev/*
+  X-Robots-Tag: noindex
+
+# Deployment-specific and branch aliases of either project are not canonical.
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex

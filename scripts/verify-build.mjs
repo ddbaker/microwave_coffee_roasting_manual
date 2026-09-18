@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { chapters, home, route, imageNames } from '../src/lib/manual.mjs';
+import { productionOrigin, googleVerification } from '../src/lib/search.mjs';
 
 const root = path.resolve('dist');
 async function walk(dir) {
@@ -14,7 +15,7 @@ assert.equal(htmlFiles.length, 17, 'Expected 12 chapters, 2 home pages, 2 dashbo
 const expectedPages = new Set(['index.html', 'ja/index.html', '404.html', 'roasting/index.html', 'ja/roasting/index.html', ...['en', 'ja'].flatMap(lang => chapters.map(ch => `${lang}/${ch.key}/index.html`))]);
 for (const file of files) {
   const relative = path.relative(root, file).replaceAll('\\', '/');
-  assert(expectedPages.has(relative) || relative === 'LICENSE.txt' || relative === '_routes.json' || /^_astro\/[\w.-]+\.(css|js)$/.test(relative) || imageNames.some(name => relative === `images/${name}`), `Unexpected published file: ${relative}`);
+  assert(expectedPages.has(relative) || ['LICENSE.txt', '_routes.json', '_headers', 'robots.txt', 'sitemap.xml'].includes(relative) || /^_astro\/[\w.-]+\.(css|js)$/.test(relative) || imageNames.some(name => relative === `images/${name}`), `Unexpected published file: ${relative}`);
   assert((await stat(file)).size < 25 * 1024 * 1024, `Asset exceeds Pages limit: ${relative}`);
 }
 for (const file of htmlFiles) {
@@ -26,7 +27,7 @@ for (const file of htmlFiles) {
   for (const tag of html.matchAll(/<img\b[^>]*>/g)) assert(/alt="[^"]+"/.test(tag[0]), `Missing alt: ${file}`);
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const url = new URL(match[1].replaceAll('&amp;', '&'), 'https://manual.invalid/' + path.relative(root, file).replaceAll('\\', '/'));
-    if (url.origin !== 'https://manual.invalid') continue;
+    if (!['https://manual.invalid', productionOrigin].includes(url.origin)) continue;
     let destination = path.resolve(root, '.' + decodeURIComponent(url.pathname));
     if (url.pathname.endsWith('/')) destination = path.join(destination, 'index.html');
     assert(destination.startsWith(root + path.sep), `Link escaped dist: ${url}`);
@@ -36,6 +37,19 @@ for (const file of htmlFiles) {
       assert(target.includes(`id="${decodeURIComponent(url.hash.slice(1))}"`), `Broken anchor: ${match[1]}`);
     }
   }
+}
+const sitemap = await readFile(path.join(root,'sitemap.xml'),'utf8');
+const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
+const expectedLocations = [...expectedPages].filter(p => p !== '404.html').map(p => productionOrigin + '/' + p.replace(/index\.html$/, ''));
+assert.deepEqual(locations.toSorted(), expectedLocations.toSorted(), 'Sitemap must include each public page exactly once');
+assert((await readFile(path.join(root,'robots.txt'),'utf8')).includes(`Sitemap: ${productionOrigin}/sitemap.xml`));
+for (const relative of expectedPages) {
+  const html = await readFile(path.join(root,relative),'utf8');
+  assert(html.includes(`name="google-site-verification" content="${googleVerification}"`), 'Missing Google ownership tag');
+  if (relative === '404.html') { assert(html.includes('name="robots" content="noindex"')); continue; }
+  assert(html.includes(`rel="canonical" href="${productionOrigin}/${relative.replace(/index\.html$/, '')}"`), `Incorrect canonical: ${relative}`);
+  assert(!/name="robots"[^>]*noindex/.test(html), `Public page is noindex: ${relative}`);
+  assert(html.includes(`hreflang="en" href="${productionOrigin}/`), 'Language metadata must use absolute production URLs');
 }
 for (const lang of ['en', 'ja']) {
   const other = lang === 'ja' ? 'en' : 'ja';

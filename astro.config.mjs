@@ -1,9 +1,11 @@
 import { defineConfig } from 'astro/config';
 import { mkdir, copyFile, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { productionOrigin } from './src/lib/search.mjs';
 
 // Copy only images referenced by the published manuscripts, never the repository.
 export default defineConfig({
+  site: productionOrigin,
   output: 'static',
   trailingSlash: 'always',
   integrations: [{
