@@ -18,6 +18,16 @@ const description = ja ? '器具の準備、生豆の洗浄、加熱と攪拌、
       <div class="section-heading"><h2 id="contents-title">{ja ? 'マニュアルを読む' : 'The manual'}</h2><span>{ja ? '全6章 · 日本語 / English' : '6 chapters · English / 日本語'}</span></div>
       <ol class="chapter-list">{chapters.map((chapter, index) => <li><a href={route(lang, chapter.key)}><span class="chapter-number">{String(index + 1).padStart(2, '0')}</span><span><h3>{chapter[lang]}</h3><p>{chapter.description[ja ? 1 : 0]}</p></span><span class="chapter-arrow" aria-hidden="true">↗</span></a></li>)}</ol>
     </section>
+    <section class="roasting-intro" aria-labelledby="roasting-logs-title">
+      <h2 id="roasting-logs-title">{ja ? '焙煎ログ' : 'Roasting logs'}</h2>
+      <p>{ja ? '国・産地・焙煎日から記録を探し、焙煎中の豆の体積と各照射の投入エネルギーをグラフで確認できます。気になる焙煎記録を選んで、時間に沿った変化を見てみてください。' : 'Browse records by country, origin and roasting date. Select a roast to see how bean volume and energy input per irradiation step change over time.'}</p>
+      <a class="start-link" href={ja ? '/ja/roasting/' : '/roasting/'}>{ja ? '焙煎ログを見る' : 'Explore roasting logs'} <span aria-hidden="true">→</span></a>
+    </section>
     <aside class="about-manual"><h2>{ja ? 'このマニュアルについて' : 'About this manual'}</h2><p>{ja ? '著者の使用環境での手順と観察を記録しています。各章にある前提条件と注意事項もあわせてお読みください。文章と写真・グラフは、出典表示と同一ライセンスの条件で共有できます。' : 'These chapters document the author’s process and observations. Read the conditions and cautions alongside each procedure. The text, photographs, and charts are shared under an attribution and share-alike license.'} <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p></aside>
   </main>
 </Layout>
+<style>
+  .roasting-intro { border-top: 1px solid var(--line); margin-top: 36px; padding-top: 28px; }
+  .roasting-intro h2 { font-size: 29px; margin-bottom: 16px; }
+  .roasting-intro p { max-width: 680px; font: 14px/1.9 var(--sans); color: var(--muted); margin-bottom: 8px; }
+</style>
