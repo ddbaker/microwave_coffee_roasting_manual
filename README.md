@@ -58,11 +58,32 @@ Cloudflare PagesのGit連携で、既存の `ddbaker/microwave_coffee_roasting_m
 - `cloudflare_integration` へのpushで自動ビルド・公開します。
 - Branch controlのPreview branchは `None` に設定済みです。`main` など、他のブランチは自動ビルド・公開しません。
 - Cloudflare画面では、この確認用プロジェクトの固定URLが `Production` と表示されます。これはCloudflare内の環境名であり、運用上は確認用サイトです。
-- 本番用プロジェクトは未作成です。別のPagesプロジェクトで自動公開を止め、確認済みの成果物だけを明示的に公開する計画です。
+- 本番用プロジェクト：`coffee-roasting-microwaves`
+- 本番URL： https://coffee-roasting-microwaves.pages.dev/ （日本語は `/ja/`）
+- 本番は `cloudflare_integration` を接続先とし、Automatic production branch deploymentsを無効、Preview branchを `None` に設定しています。pushでは本番を更新しません。
+- 初回本番公開：`dd890f669223e5c72437388e2b5ff4b77802a05a`（2026-09-18）。確認済みの同じコミットをAstroでビルドしました。
+- 初回本番デプロイID：`b90bc0af-7d81-41ef-a4ab-edd775fcfd29`。
 
 静的出力のため、SSR用の `@astrojs/cloudflare` アダプター、Pages Functions、データベース、ログイン機能は不要です。Cloudflare PagesのAstroプリセットによるGit連携とは別のものです。
 
 GitHub Appのアクセス対象は `ddbaker/microwave_coffee_roasting_manual` のみです。GitHubへのpush後、Cloudflareのビルド成功と確認用URLを確認してください。本番反映は別の操作として扱います。
+
+## 更新・本番反映・復旧
+
+1. この公開用worktreeで原稿を更新し、`npm run build` で検証します。
+2. 公開する変更だけをコミットし、`cloudflare_integration` へpushします。
+3. 確認用Pagesの成功したデプロイで、コミットSHAとそのデプロイ固有のURLを記録し、内容を確認します。固定の確認用URLは次のpushで更新されるため、承認する版の特定にはコミットSHAと固有URLを使います。
+4. 本番へ反映する際は、そのSHAを別のクリーンな作業場所へcheckoutし、`npm ci` と `npm run build` で静的ファイルを生成します。その成果物をローカルで確認し、確認用デプロイとの内容一致を検証してから公開します。確認後に別の版をビルドし直して混ぜないでください。
+5. 既存のGit連携を保ったまま、Wranglerからその `dist` を本番へ送れます。以下は**本番を更新する手動操作**です。`APPROVED_COMMIT_SHA` は確認済みの完全なSHAへ置き換え、対象アカウントと作業場所を確認してから実行します。WranglerのインストールとCloudflareログインは別途必要です。初回公開では管理画面のAstro連携を使用しており、このCLI経由の手順はまだ実行していません。
+
+```powershell
+wrangler pages deploy dist --project-name coffee-roasting-microwaves --branch cloudflare_integration --commit-hash APPROVED_COMMIT_SHA
+```
+
+6. 本番URLで英日ページと画像を確認し、本番デプロイID・SHAを記録します。本番の自動公開設定は無効のままにします。
+7. 復旧時は本番プロジェクトのDeploymentsで、以前の成功したProductionデプロイを選び、`Rollback to this deployment` を実行します。初回公開しかない間は戻り先がないため、既知の正常な成果物を再公開します。確認用プロジェクトのデプロイを本番プロジェクトへロールバックすることはできません。
+
+仕様参照：[Git連携と手動公開](https://developers.cloudflare.com/pages/configuration/git-integration/)、[Wrangler Pagesコマンド](https://developers.cloudflare.com/workers/wrangler/commands/pages/)、[ロールバック](https://developers.cloudflare.com/pages/configuration/rollbacks/)。
 
 ## ライセンス
 
