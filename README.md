@@ -38,7 +38,7 @@ npm run preview -- --port 4321
 - `node_modules/`、`.astro/`、`dist/`、`.qa/`、環境変数ファイルはGit管理対象外です。
 - `public/` にリポジトリの内容をまとめてコピーしないでください。画像とライセンスのみ、明示した処理で成果物へコピーします。
 
-## Cloudflare Pagesへの接続（次の段階・未設定）
+## Cloudflare Pagesへの接続
 
 Cloudflare PagesのGit連携で、既存の `ddbaker/microwave_coffee_roasting_manual` のみを選択します。
 
@@ -51,11 +51,18 @@ Cloudflare PagesのGit連携で、既存の `ddbaker/microwave_coffee_roasting_m
 | 連携ブランチ | `cloudflare_integration` のみ |
 | Node.js | 検証した版に固定（現在24.19.0） |
 
-確認用・本番用を別のPagesプロジェクトにする計画です。確認用は上記ブランチから自動公開し、他のブランチのプレビュービルドは無効にします。本番用は自動公開せず、確認済みの成果物のみを明示的に公開します。`main` は接続対象にしません。
+確認用プロジェクト `coffee-roasting-microwaves-preview` を接続済みです。
+
+- 確認用URL： https://coffee-roasting-microwaves-preview.pages.dev/
+- 日本語トップ： https://coffee-roasting-microwaves-preview.pages.dev/ja/
+- `cloudflare_integration` へのpushで自動ビルド・公開します。
+- Branch controlのPreview branchは `None` に設定済みです。`main` など、他のブランチは自動ビルド・公開しません。
+- Cloudflare画面では、この確認用プロジェクトの固定URLが `Production` と表示されます。これはCloudflare内の環境名であり、運用上は確認用サイトです。
+- 本番用プロジェクトは未作成です。別のPagesプロジェクトで自動公開を止め、確認済みの成果物だけを明示的に公開する計画です。
 
 静的出力のため、SSR用の `@astrojs/cloudflare` アダプター、Pages Functions、データベース、ログイン機能は不要です。Cloudflare PagesのAstroプリセットによるGit連携とは別のものです。
 
-GitHubへの保存とCloudflareへの公開は別の操作です。公開設定・URLは、接続完了時にこの文書へ追記します。
+GitHub Appのアクセス対象は `ddbaker/microwave_coffee_roasting_manual` のみです。GitHubへのpush後、Cloudflareのビルド成功と確認用URLを確認してください。本番反映は別の操作として扱います。
 
 ## ライセンス
 
