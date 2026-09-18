@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+import { home, route } from '../lib/manual.mjs';
+const { lang = 'en', title, description, chapterKey } = Astro.props;
+const ja = lang === 'ja';
+const languageUrl = target => chapterKey ? route(target, chapterKey) : home(target);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f8f7f3" />
+    <link rel="alternate" hreflang="en" href={languageUrl('en')} />
+    <link rel="alternate" hreflang="ja" href={languageUrl('ja')} />
+    <link rel="alternate" hreflang="x-default" href={languageUrl('en')} />
+    <title>{title} · {ja ? '電子レンジ焙煎マニュアル' : 'Coffee Roasting with Microwaves — A Practical Manual'}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{ja ? '本文へ移動' : 'Skip to content'}</a>
+    <header class="site-header">
+      <a class="brand" href={home(lang)}><span class="brand-name">COFFEE ROASTING MANUAL</span><span class="brand-sub">{ja ? '焙煎マニュアル' : 'Using microwaves'}</span></a>
+      <nav class="languages" aria-label={ja ? '言語を選択' : 'Select language'}>
+        <a href={languageUrl('en')} lang="en" hreflang="en" aria-current={!ja ? 'page' : undefined}>English</a>
+        <span aria-hidden="true">/</span>
+        <a href={languageUrl('ja')} lang="ja" hreflang="ja" aria-current={ja ? 'page' : undefined}>日本語</a>
+      </nav>
+    </header>
+    <slot />
+    <footer class="site-footer">
+      <div><strong>{ja ? '電子レンジによるコーヒー豆焙煎マニュアル' : 'Coffee Roasting with Microwaves — A Practical Manual'}</strong><p>{ja ? '文書・画像：ddbaker / CC BY-SA 4.0' : 'Text & images: ddbaker / CC BY-SA 4.0'}</p></div>
+      <nav aria-label={ja ? '関連リンク' : 'Footer'}><a href={home(lang)}>{ja ? '目次' : 'Contents'}</a><a href="/LICENSE.txt">{ja ? 'ライセンス' : 'License'}</a><a href="https://github.com/ddbaker/microwave_coffee_roasting_manual/tree/cloudflare_integration">GitHub</a></nav>
+    </footer>
+  </body>
+</html>

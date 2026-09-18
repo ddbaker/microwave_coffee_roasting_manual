@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { chapters, renderChapter, home, route } from '../../lib/manual.mjs';
+export function getStaticPaths() {
+  return ['en', 'ja'].flatMap(lang => chapters.map((chapter, index) => ({ params: { lang, chapter: chapter.key }, props: { lang, chapter, index } })));
+}
+const { lang, chapter, index } = Astro.props;
+const ja = lang === 'ja';
+const { title, html, headings } = renderChapter(lang, chapter);
+const previous = chapters[index - 1];
+const next = chapters[index + 1];
+---
+<Layout lang={lang} title={title} chapterKey={chapter.key} description={chapter.description[ja ? 1 : 0]}>
+  <main id="main" class="article-layout">
+    <aside class="chapter-sidebar"><nav aria-label={ja ? '章の一覧' : 'Chapters'}><a class="back-home" href={home(lang)}>← {ja ? 'マニュアルの目次' : 'Manual contents'}</a><ol>{chapters.map((item, i) => <li><a href={route(lang, item.key)} aria-current={item.key === chapter.key ? 'page' : undefined}><span>{String(i + 1).padStart(2, '0')}</span>{item[lang]}</a></li>)}</ol></nav></aside>
+    <article>
+      <header class="article-header"><p class="eyebrow">{ja ? 'CHAPTER' : 'CHAPTER'} {String(index + 1).padStart(2, '0')} / 06</p><h1>{title}</h1></header>
+      {headings.length > 0 && <details class="on-this-page"><summary>{ja ? 'このページの内容' : 'On this page'}</summary><ul>{headings.map(heading => <li><a href={`#${heading.id}`} set:html={heading.text} /></li>)}</ul></details>}
+      <div class="prose" set:html={html} />
+      <nav class="pagination" aria-label={ja ? '前後の章' : 'Chapter navigation'}><div>{previous && <a href={route(lang, previous.key)}><small>← {ja ? '前の章' : 'Previous'}</small>{previous[lang]}</a>}</div><div>{next ? <a href={route(lang, next.key)}><small>{ja ? '次の章' : 'Next'} →</small>{next[lang]}</a> : <a href={home(lang)}><small>{ja ? '目次へ' : 'Back to contents'} →</small>{ja ? 'マニュアル' : 'The manual'}</a>}</div></nav>
+    </article>
+  </main>
+</Layout>

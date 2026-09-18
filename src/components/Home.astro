@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { chapters, route } from '../lib/manual.mjs';
+const { lang = 'en' } = Astro.props;
+const ja = lang === 'ja';
+const description = ja ? '器具の準備、生豆の洗浄、加熱と攪拌、焙煎の実践記録をまとめたマニュアル。' : 'A practical manual covering equipment, green-bean preparation, heating and agitation, and documented microwave coffee roasts.';
+---
+<Layout lang={lang} title={ja ? 'ホーム' : 'Home'} description={description}>
+  <main id="main" class="home-main">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">{ja ? '準備から実践まで' : 'FROM PREPARATION TO PRACTICE'}</p>
+      <h1 id="hero-title">{ja ? <>電子レンジで、<br />コーヒー豆を焙煎する。</> : <>Coffee roasting<br />with microwaves.</>}</h1>
+      <p class="intro">{ja ? '器具を揃え、生豆を整え、加熱と攪拌を重ねる。基本原則から実践記録まで、工程に沿って読めるマニュアルです。' : 'Prepare the equipment and green beans. Follow the heating and agitation process. Explore the principles and the recorded roasts, one chapter at a time.'}</p>
+      <a class="start-link" href={route(lang, 'equipment')}>{ja ? '器具・材料から読み始める' : 'Start with equipment & materials'} <span aria-hidden="true">→</span></a>
+      <p class="reading-note">{ja ? '初めての方は、器具・材料と基本原則を確認してから実践編へ進んでください。' : 'New here? Read the equipment and principles chapters before moving on to the roasting process.'}</p>
+    </section>
+    <section class="contents-section" aria-labelledby="contents-title">
+      <div class="section-heading"><h2 id="contents-title">{ja ? 'マニュアルを読む' : 'The manual'}</h2><span>{ja ? '全6章 · 日本語 / English' : '6 chapters · English / 日本語'}</span></div>
+      <ol class="chapter-list">{chapters.map((chapter, index) => <li><a href={route(lang, chapter.key)}><span class="chapter-number">{String(index + 1).padStart(2, '0')}</span><span><h3>{chapter[lang]}</h3><p>{chapter.description[ja ? 1 : 0]}</p></span><span class="chapter-arrow" aria-hidden="true">↗</span></a></li>)}</ol>
+    </section>
+    <aside class="about-manual"><h2>{ja ? 'このマニュアルについて' : 'About this manual'}</h2><p>{ja ? '著者の使用環境での手順と観察を記録しています。各章にある前提条件と注意事項もあわせてお読みください。文章と写真・グラフは、出典表示と同一ライセンスの条件で共有できます。' : 'These chapters document the author’s process and observations. Read the conditions and cautions alongside each procedure. The text, photographs, and charts are shared under an attribution and share-alike license.'} <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p></aside>
+  </main>
+</Layout>

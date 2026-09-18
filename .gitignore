@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.qa/
+.env
+.env.*
+!.env.example
+.DS_Store
+/analysis/
+/_com_gpt/
+/roasting_dashboard/
+/roasting_logs/
+/Open Roasting Dashboard.cmd
+/.worktrees/
