@@ -20,7 +20,7 @@ const languageUrl = target => chapterKey ? route(target, chapterKey) : home(targ
   <body>
     <a class="skip-link" href="#main">{ja ? '本文へ移動' : 'Skip to content'}</a>
     <header class="site-header">
-      <a class="brand" href={home(lang)}><span class="brand-name">COFFEE ROASTING MANUAL</span><span class="brand-sub">{ja ? '焙煎マニュアル' : 'Using microwaves'}</span></a>
+      <a class="brand" href={home(lang)} lang="en"><span class="brand-name">COFFEE ROASTING MANUAL</span><span class="brand-sub">Using microwaves</span></a>
       <nav class="languages" aria-label={ja ? '言語を選択' : 'Select language'}>
         <a href={languageUrl('en')} lang="en" hreflang="en" aria-current={!ja ? 'page' : undefined}>English</a>
         <span aria-hidden="true">/</span>
