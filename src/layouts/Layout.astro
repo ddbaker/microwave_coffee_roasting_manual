@@ -1,9 +1,9 @@
 ---
 import '../styles/global.css';
 import { home, route } from '../lib/manual.mjs';
-const { lang = 'en', title, description, chapterKey } = Astro.props;
+const { lang = 'en', title, description, chapterKey, dashboard = false } = Astro.props;
 const ja = lang === 'ja';
-const languageUrl = target => chapterKey ? route(target, chapterKey) : home(target);
+const languageUrl = target => dashboard ? (target === 'ja' ? '/ja/roasting/' : '/roasting/') : chapterKey ? route(target, chapterKey) : home(target);
 ---
 <!doctype html>
 <html lang={lang}>
@@ -30,7 +30,7 @@ const languageUrl = target => chapterKey ? route(target, chapterKey) : home(targ
     <slot />
     <footer class="site-footer">
       <div><strong>{ja ? '電子レンジによるコーヒー豆焙煎マニュアル' : 'Coffee Roasting with Microwaves — A Practical Manual'}</strong><p>{ja ? '文書・画像：ddbaker / CC BY-SA 4.0' : 'Text & images: ddbaker / CC BY-SA 4.0'}</p></div>
-      <nav aria-label={ja ? '関連リンク' : 'Footer'}><a href={home(lang)}>{ja ? '目次' : 'Contents'}</a><a href="/LICENSE.txt">{ja ? 'ライセンス' : 'License'}</a><a href="https://github.com/ddbaker/microwave_coffee_roasting_manual/tree/cloudflare_integration">GitHub</a></nav>
+      <nav aria-label={ja ? '関連リンク' : 'Footer'}><a href={home(lang)}>{ja ? '目次' : 'Contents'}</a><a href={ja ? '/ja/roasting/' : '/roasting/'}>{ja ? '焙煎ログ' : 'Roasting logs'}</a><a href="/LICENSE.txt">{ja ? 'ライセンス' : 'License'}</a><a href="https://github.com/ddbaker/microwave_coffee_roasting_manual/tree/cloudflare_integration">GitHub</a></nav>
     </footer>
   </body>
 </html>

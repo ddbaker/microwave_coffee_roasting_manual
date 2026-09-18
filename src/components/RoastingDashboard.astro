@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/roasting.css';
+const { lang = 'en' } = Astro.props;
+const ja = lang === 'ja';
+---
+<Layout lang={lang} dashboard={true} title={ja ? '焙煎ログ' : 'Roasting logs'} description={ja ? '焙煎中の体積と投入エネルギーを、実測ログから確認します。' : 'Explore bean volume and energy input from recorded microwave roasts.'}>
+  <main id="main" class="roasting-main" data-lang={lang}>
+    <header class="roasting-heading"><p class="eyebrow">{ja ? '焙煎の記録' : 'RECORDED ROASTS'}</p><h1>{ja ? '焙煎ログ' : 'Roasting logs'}</h1><p>{ja ? '国・産地・焙煎日で絞り込み、記録を選択してください。' : 'Filter by origin and roasting date, then select a record.'}</p></header>
+    <noscript>{ja ? 'ログの検索・グラフ表示には JavaScript を有効にしてください。' : 'Enable JavaScript to search the logs and display graphs.'}</noscript>
+    <div id="load-status" role="status">{ja ? 'ログを読み込み中…' : 'Loading roasting logs…'}</div>
+    <button id="retry" hidden>{ja ? '再読み込み' : 'Retry'}</button>
+    <section id="explorer" hidden aria-label={ja ? '焙煎ログの検索' : 'Find a roasting log'}>
+      <div class="roast-filters">{[['country','Country','国'],['origin','Origin','産地'],['suborigin','Area / farm','詳細産地'],['month','Roasting month','焙煎年月'],['day','Day','日']].map(([key,en,jp])=><label>{ja?jp:en}<select id={key}><option value="">{ja?'すべて':'All'}</option></select></label>)}<button id="reset-filters">{ja?'絞り込みを解除':'Reset filters'}</button></div>
+      <p id="result-count" role="status"></p>
+      <div class="profile-list-scroll"><table class="profile-list"><thead><tr><th>{ja?'焙煎日':'Roasted'}</th><th>{ja?'国':'Country'}</th><th>{ja?'産地・詳細産地':'Origin / area'}</th><th>{ja?'記録':'Record'}</th></tr></thead><tbody id="profile-list"></tbody></table></div>
+      <p id="excluded-summary"></p>
+      <section id="profile" aria-label={ja?'選択した焙煎ログ':'Selected roasting log'} aria-busy="false">
+        <h2 id="profile-heading"></h2><p id="profile-summary"></p>
+        <div id="graph" class="graph-scroll" tabindex="0" aria-label={ja?'焙煎グラフ。小さい画面では横スクロールできます。':'Roasting graph. Scroll horizontally on small screens.'}></div>
+        <div class="graph-actions"><p id="point-detail" role="status"></p><button id="download-png" hidden>{ja?'PNGを保存':'Save PNG'}</button></div>
+        <details id="source-details"><summary>{ja?'元データ・換算・欠測の詳細':'Source data, conversions and missing observations'}</summary><p id="source-path"></p><p id="source-hash"></p><ul id="quality-flags"></ul><div class="source-scroll"><table><thead><tr>{['ID','Row','Irradiation (s)','Pause (s)','Power (W)','Energy (kJ)','Volume (raw)','Volume (mL)','Elapsed (s)','Note'].map(t=><th>{t}</th>)}</tr></thead><tbody id="source-rows"></tbody></table></div></details>
+      </section>
+    </section>
+  </main>
+  <script>import '../lib/roast-dashboard.js';</script>
+</Layout>

@@ -2,6 +2,9 @@
 
 Astroで生成する、英語・日本語の静的マニュアルです。公開用ブランチは `cloudflare_integration` のみです。
 
+Phase-2 で焙煎ログダッシュボードを追加しました。英語 `/roasting/`、日本語 `/ja/roasting/`。
+データの取込・追加・全件再構築・D1接続は [phase-2 運用手順](docs/phase2-operations.md) を参照してください。
+
 ## 作業場所とブランチ
 
 - 元の作業フォルダー：`main`。ローカルでの分析・試作を行います。
@@ -25,7 +28,7 @@ npm run build
 npm run preview -- --port 4321
 ```
 
-`build` は15ページ、リンク・画像・言語切替、配信ファイルの許可リスト、ブラウザー用JavaScriptがないことを確認します。成果物は `dist/` です。
+`build` は17ページ、リンク・画像・言語切替、配信ファイルの許可リストを確認します。ブラウザー用JavaScriptは2つのダッシュボードページに限定し、マニュアル本文は静的です。成果物は `dist/` です。
 
 ## 原稿と公開範囲
 
@@ -64,7 +67,7 @@ Cloudflare PagesのGit連携で、既存の `ddbaker/microwave_coffee_roasting_m
 - 初回本番公開：`dd890f669223e5c72437388e2b5ff4b77802a05a`（2026-09-18）。確認済みの同じコミットをAstroでビルドしました。
 - 初回本番デプロイID：`b90bc0af-7d81-41ef-a4ab-edd775fcfd29`。
 
-静的出力のため、SSR用の `@astrojs/cloudflare` アダプター、Pages Functions、データベース、ログイン機能は不要です。Cloudflare PagesのAstroプリセットによるGit連携とは別のものです。
+マニュアルは静的出力で、SSR用の `@astrojs/cloudflare` アダプターは使用しません。Phase-2 の焙煎ログだけが Pages Functions と D1 を使います。一般閲覧にログインは不要です。
 
 GitHub Appのアクセス対象は `ddbaker/microwave_coffee_roasting_manual` のみです。GitHubへのpush後、Cloudflareのビルド成功と確認用URLを確認してください。本番反映は別の操作として扱います。
 

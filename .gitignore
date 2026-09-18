@@ -12,3 +12,9 @@ dist/
 /roasting_logs/
 /Open Roasting Dashboard.cmd
 /.worktrees/
+/.data/
+/.wrangler/
+/wrangler.preview.jsonc
+/wrangler.production.jsonc
+/wrangler.jsonc
+__pycache__/
