@@ -12,6 +12,8 @@ export const chapters = [
 export const home = lang => lang === 'ja' ? '/ja/' : '/';
 export const route = (lang, key) => `/${lang}/${key}/`;
 export const sourcePath = (lang, chapter) => `${lang === 'ja' ? 'ja_JP' : 'us_EN'}/${chapter.file}_${lang}.md`;
+export const templateNames = ['en', 'ja'].flatMap(lang =>
+  ['ods', 'pdf'].map(extension => `coffee_microvave_roasting_template_v4_${lang}.${extension}`));
 const imageDescriptions = {
   'geen_beans-144g.png': ['144 g of green coffee beans on a scale', '秤に載せた144gの生豆'],
   'glass-cylinder.png': ['Heat-resistant glass roasting cylinder', '焙煎に使用する耐熱ガラス容器'],
@@ -44,6 +46,10 @@ export function renderChapter(lang, chapter) {
   const title = source.match(/^# (.+)$/m)?.[1];
   if (!title) throw new Error(`Missing title: ${sourcePath(lang, chapter)}`);
   source = source.replace(/^# .+\r?\n/, '');
+  source = source.replace(/\]\(\.\.\/docs\/([^)]+)\)/g, (_, name) => {
+    if (!templateNames.includes(name)) throw new Error(`Unknown template link: ${name}`);
+    return `](/docs/${name})`;
+  });
   source = source.replace(/\]\(\.\/([^)#]+)\.md(#[^)]+)?\)/g, (_, file, anchor = '') => {
     const destination = chapters.find(entry => `${entry.file}_${lang}` === file);
     if (!destination) throw new Error(`Unknown manuscript link: ${file}`);

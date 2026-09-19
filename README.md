@@ -39,7 +39,8 @@ npm run preview -- --port 4321
 - `images/` から本文が参照する20枚だけを配信します。既存画像の内容は変更せず、ページ上では説明文を添えます。
 - `_com_gpt/`、`analysis/`、`roasting_dashboard/`、`roasting_logs/`、`Open Roasting Dashboard.cmd` はこの公開用構成に含めません。
 - `node_modules/`、`.astro/`、`dist/`、`.qa/`、環境変数ファイルはGit管理対象外です。
-- `public/` にリポジトリの内容をまとめてコピーしないでください。画像とライセンスのみ、明示した処理で成果物へコピーします。
+- `docs/coffee_microvave_roasting_template_v4_{en,ja}.{ods,pdf}` の4ファイルを配信します。英日それぞれの器具・材料の章からダウンロードできます。
+- `public/` にリポジトリの内容をまとめてコピーしないでください。画像・上記テンプレート・ライセンスのみ、明示した処理で成果物へコピーします。
 
 ## Cloudflare Pagesへの接続
 

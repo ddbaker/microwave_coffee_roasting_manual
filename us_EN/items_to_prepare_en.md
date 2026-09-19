@@ -90,3 +90,18 @@ The roasting workflow requires repeatedly removing the container from the oven, 
 Even when wearing heat-resistant gloves, prolonged exposure to direct steam and conducted heat from the top of the container is dangerous. When shaking and agitating the container, place a heavy towel over the top opening to shield your hands and face from escaping steam and radiant heat.
 
 <img src="../images/burn safety.jpg" width="50%">
+
+---
+
+### 8. Roasting Log Spreadsheet Template
+
+The roasting log spreadsheet template used by the author of this manual is available below.
+
+[Roasting log template — ODS version](../docs/coffee_microvave_roasting_template_v4_en.ods)  
+[Roasting log template — PDF version](../docs/coffee_microvave_roasting_template_v4_en.pdf)  
+
+Note-1: Record the microwave exposure time, interval time, and bean volume in each row.
+
+Note-2: Although the template includes columns for temperature during agitation and weight, these are measured only three times: (1) before roasting, to record the initial conditions; (2) after the initial roasting stage of four 60-second exposures at 300 W; and (3) at the end of roasting. Measuring temperature and weight at every step would make the intervals too long and make it difficult to control roast progression properly.
+
+Note-3: This template is simply an example of the author's own practice. Feel free to adapt it to suit your needs.
