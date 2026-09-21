@@ -105,3 +105,10 @@ Note-1: Record the microwave exposure time, interval time, and bean volume in ea
 Note-2: Although the template includes columns for temperature during agitation and weight, these are measured only three times: (1) before roasting, to record the initial conditions; (2) after the initial roasting stage of four 60-second exposures at 300 W; and (3) at the end of roasting. Measuring temperature and weight at every step would make the intervals too long and make it difficult to control roast progression properly.
 
 Note-3: This template is simply an example of the author's own practice. Feel free to adapt it to suit your needs.
+
+### 9. Kitchen Timer
+
+Use a kitchen timer to keep track of elapsed time for the roasting log.
+A timer app on your smartphone is also suitable.
+
+<img src="../images/kitchen_timer.jpg" width="50%">

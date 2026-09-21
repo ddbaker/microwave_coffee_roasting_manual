@@ -15,6 +15,7 @@ export const sourcePath = (lang, chapter) => `${lang === 'ja' ? 'ja_JP' : 'us_EN
 export const templateNames = ['en', 'ja'].flatMap(lang =>
   ['ods', 'pdf'].map(extension => `coffee_microvave_roasting_template_v4_${lang}.${extension}`));
 const imageDescriptions = {
+  'kitchen_timer.jpg': ['Kitchen timer for tracking elapsed roasting time', '焙煎の経過時間を測るキッチンタイマー'],
   'geen_beans-144g.png': ['144 g of green coffee beans on a scale', '秤に載せた144gの生豆'],
   'glass-cylinder.png': ['Heat-resistant glass roasting cylinder', '焙煎に使用する耐熱ガラス容器'],
   'place_on_the_disposable_chopsticks.jpg': ['Glass cylinder supported on wooden chopsticks', '木製の割り箸の上に置いたガラス容器'],
